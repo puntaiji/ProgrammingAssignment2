@@ -1,6 +1,7 @@
-## Create cache matrix
+## Create cache matrix functions
 
-## Create cache matrix
+## Cache matrix object that you can set and get matrix 
+## and get and set inversion of matrix
 
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
@@ -19,19 +20,25 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Invert matrix x
+## calculate inversion of matrix x
+## by checking if x has inversion in cache
+## It will return cache, if not it will 
+## calculate new inversion of matrix x
 
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
+  
   inv <- x$getInv()
   
+  ##If x has cached inversion
   if(!is.null(inv)){
     message("getting cached inverse of matriz")
+	## Return a cached matrix that is the inverse of 'x'
     return(inv)
   }
   data <- x$get()
   inv <- solve(data)
   x$setInv(inv)
+  ## Return a matrix that is the inverse of 'x'
   inv
   
 }
